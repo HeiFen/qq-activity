@@ -13,6 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// 检查登录状态
+Route::post('login-check', 'Api\LoginController@checkLogin')->name('check_login');
