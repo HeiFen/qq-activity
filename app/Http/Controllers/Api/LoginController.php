@@ -10,18 +10,15 @@ class LoginController extends Controller
     /**
      * 获取qrisg
      */
-    private function getqrtoken($qrsig)
-    {
-        $str = '@RZjKruaOm';
-
+    private function getqrtoken($qrsig){
         $len = strlen($qrsig);
         $hash = 0;
-        for ($i = 0; $i < $len; $i++) {
+        for($i = 0; $i < $len; $i++){
             $hash += (($hash << 5) & 2147483647) + ord($qrsig[$i]) & 2147483647;
-            $hash &= 2147483647;
+			$hash &= 2147483647;
         }
         return $hash & 2147483647;
-    }
+	}
 
     /**
      * 轮询登录状态
