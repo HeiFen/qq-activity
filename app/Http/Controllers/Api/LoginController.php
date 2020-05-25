@@ -54,12 +54,14 @@ class LoginController extends Controller
                     preg_match("/p_skey=(.*?);/", $login_data, $matchs);
                     $pskey = $matchs[1];
                 }
+                
                 return $this->json([
+                    'qq' => preg_match('[1-9][0-9]{4,}', $uin),
                     'uin' => $uin,
                     'skey' => '@'.$skey[1],
                     'superkey' => $superkey[1],
                     'p_skey' => $pskey,
-                ]);
+                ], 201);
             }
             return $this->json($status);
         }
