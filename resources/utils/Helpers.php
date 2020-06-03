@@ -5,7 +5,7 @@ use GuzzleHttp\Client;
 /**
  * guzzle
  */
-function guzzTo($url, $method, $headers=null, $body=null)
+function guzzTo($url, $method, $headers = null, $body = null)
 {
     $client = new Client();
     $headers[] = "Accept: application/json";
@@ -15,9 +15,9 @@ function guzzTo($url, $method, $headers=null, $body=null)
 
     $data = [
         'headers' => $headers,
-        'body' => $body
+        'form_params' => $body
     ];
-    
+
     $content = $client->request($method, $url, $data);
     $data = [
         'headers' => $content->getHeaders(),
@@ -31,12 +31,13 @@ function guzzTo($url, $method, $headers=null, $body=null)
 /**
  * curl
  */
-function get_curl($url,$post=0,$referer=0,$cookie=0,$header=0,$ua=0,$nobaody=0){
+function get_curl($url, $post = 0, $referer = 0, $cookie = 0, $header = 0, $ua = 0, $nobaody = 0)
+{
     // if($this->loginapi)return $this->get_curl_proxy($url,$post,$referer,$cookie,$header,$ua,$nobaody);
-	$ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36';
+    $ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36';
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_URL, $url);
     // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     // $httpheader[] = "Accept: application/json";
@@ -48,7 +49,7 @@ function get_curl($url,$post=0,$referer=0,$cookie=0,$header=0,$ua=0,$nobaody=0){
     //     curl_setopt($ch, CURLOPT_POST, 1);
     //     curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
     // }
-    if($header){
+    if ($header) {
         curl_setopt($ch, CURLOPT_HEADER, TRUE);
     }
     // if($cookie){
@@ -68,8 +69,29 @@ function get_curl($url,$post=0,$referer=0,$cookie=0,$header=0,$ua=0,$nobaody=0){
     // }
     // curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     // curl_setopt($ch, CURLOPT_ENCODING, "gzip");
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $ret = curl_exec($ch);
     curl_close($ch);
     return $ret;
+}
+
+/**
+ * php charCodeAt
+ */
+function charCodeAt($str)
+{
+    $result = array();
+    for ($i = 0, $l = mb_strlen($str, 'utf-8'); $i < $l; ++$i) {
+        $result[] = uniord(mb_substr($str, $i, 1, 'utf-8'));
+    }
+    return join(",", $result);
+}
+function uniord($str, $from_encoding = false)
+{
+    $from_encoding = $from_encoding ? $from_encoding : 'UTF-8';
+    if (strlen($str) == 1)
+        return ord($str);
+    $str = mb_convert_encoding($str, 'UCS-4BE', $from_encoding);
+    $tmp = unpack('N', $str);
+    return $tmp[1];
 }

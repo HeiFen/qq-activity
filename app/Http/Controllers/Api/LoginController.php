@@ -36,11 +36,12 @@ class LoginController extends Controller
         ];
 
         $guzz_data = guzzTo($url, 'post', $headers);
-
+        
         if (preg_match("/ptuiCB\('(.*?)'\)/", $guzz_data['body'], $arr)) {
             $status = explode("','", str_replace("', '", "','", $arr[1]));
             if ($status[0] == 0) {
                 $cookies = implode($guzz_data['headers']['Set-Cookie']);
+                
                 // 获取 uin
                 preg_match('/;uin=(.*?);/', $cookies, $uin);
                 // 获取 skey
@@ -54,9 +55,11 @@ class LoginController extends Controller
                     preg_match("/p_skey=(.*?);/", $login_data, $matchs);
                     $pskey = $matchs[1];
                 }
-                
+                // 获取qq号
+                preg_match("/[1-9][0-9]{4,}/", $uin, $qq);
+
                 return $this->json([
-                    'qq' => preg_match('[1-9][0-9]{4,}', $uin),
+                    'qq' => $qq[0],
                     'uin' => $uin,
                     'skey' => '@'.$skey[1],
                     'superkey' => $superkey[1],
@@ -65,5 +68,24 @@ class LoginController extends Controller
             }
             return $this->json($status);
         }
+    }
+
+    /**
+     * 获取角色信息
+     */
+    public function getRole(Request $request)
+    {
+        
+        $request->validate([
+            'area' => 'required'
+        ]);
+
+        $url = 'https://comm.aci.game.qq.com/main?game=dnf&area='. $request->input('area') .'&sCloudApiName=ams.gameattr.role';
+
+        $headers = [
+            'cookie' => 'qrsig=' . $request->input('qrisg')
+        ];
+
+        $guzz_data = guzzTo($url, 'post', $headers);
     }
 }

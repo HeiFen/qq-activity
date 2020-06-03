@@ -4,7 +4,11 @@
     <el-row style="text-align: center;">
         <el-avatar class="cent" shape="square" :size="100" fit="cover" :src="avatar"></el-avatar>
         <el-button style="display: block;margin: auto;" type="primary" @click="dialogFormVisible = true" round center>
-            ${login_status_msg}</el-button>
+            ${login_status_msg}
+        </el-button>
+        <el-button style="display: block;margin: auto;" type="primary" @click="sendActivity" round center>
+            Start
+        </el-button>
     </el-row>
 
     <el-dialog width="20%" title="收货地址" :visible.sync="dialogFormVisible">
@@ -16,7 +20,7 @@
         <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
             <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-        </div> 
+        </div>
     </el-dialog>
 </div>
 
@@ -27,9 +31,11 @@
         el: '#app',
         delimiters: ['${', '}'],
         data: {
+            qq: '',
             uin: '',
             skey: '',
             p_skey: '',
+            super_key: '',
             g_tk: '',
             login_status: 0,
             login_status_msg: '扫码登录',
@@ -47,79 +53,79 @@
                     v: "1",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东二区",
                     v: "15",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东三区",
                     v: "22",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东四区",
                     v: "45",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东五区",
                     v: "52",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东六区",
                     v: "65",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东七区",
                     v: "71",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东八区",
                     v: "81",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东九区",
                     v: "89",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东十区",
                     v: "98",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东十一区",
                     v: "105",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东十二区",
                     v: "126",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广东十三区",
                     v: "134",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "福建",
@@ -129,19 +135,19 @@
                     v: "14",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "福建二区",
                     v: "44",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "福建3/4区",
                     v: "80",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "浙江",
@@ -151,37 +157,37 @@
                     v: "11",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "浙江二区",
                     v: "21",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "浙江三区",
                     v: "55",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "浙江4/5区",
                     v: "84",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "浙江六区",
                     v: "116",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "浙江七区",
                     v: "129",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "北京",
@@ -191,19 +197,19 @@
                     v: "2",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "北京2/4区",
                     v: "35",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "北京三区",
                     v: "72",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "上海",
@@ -213,25 +219,25 @@
                     v: "3",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "上海二区",
                     v: "16",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "上海三区",
                     v: "36",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "上海4/5区",
                     v: "93",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "四川",
@@ -241,37 +247,37 @@
                     v: "4",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "四川二区",
                     v: "26",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "四川三区",
                     v: "56",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "四川四区",
                     v: "70",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "四川五区",
                     v: "82",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "四川六区",
                     v: "107",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "湖南",
@@ -281,43 +287,43 @@
                     v: "5",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖南二区",
                     v: "25",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖南三区",
                     v: "50",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖南四区",
                     v: "66",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖南五区",
                     v: "74",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖南六区",
                     v: "85",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖南七区",
                     v: "117",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "山东",
@@ -327,37 +333,37 @@
                     v: "6",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "山东2/7区",
                     v: "37",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "山东三区",
                     v: "59",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "山东四区",
                     v: "75",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "山东五区",
                     v: "78",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "山东六区",
                     v: "106",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "江苏",
@@ -367,43 +373,43 @@
                     v: "7",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "江苏二区",
                     v: "20",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "江苏三区",
                     v: "41",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "江苏四区",
                     v: "53",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "江苏5/7区",
                     v: "79",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "江苏六区",
                     v: "90",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "江苏八区",
                     v: "109",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "湖北",
@@ -413,49 +419,49 @@
                     v: "9",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖北二区",
                     v: "24",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖北三区",
                     v: "48",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖北四区",
                     v: "68",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖北五区",
                     v: "76",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖北六区",
                     v: "94",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖北七区",
                     v: "115",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "湖北八区",
                     v: "127",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "华北",
@@ -465,25 +471,25 @@
                     v: "10",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "华北二区",
                     v: "19",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "华北三区",
                     v: "54",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "华北四区",
                     v: "87",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "西北",
@@ -493,13 +499,13 @@
                     v: "12",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "西北2/3区",
                     v: "46",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "东北",
@@ -509,25 +515,25 @@
                     v: "13",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "东北二区",
                     v: "18",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "东北3/7区",
                     v: "23",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "东北4/5/6区",
                     v: "83",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "西南",
@@ -537,19 +543,19 @@
                     v: "17",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "西南二区",
                     v: "49",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "西南三区",
                     v: "92",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "河南",
@@ -559,43 +565,43 @@
                     v: "27",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河南二区",
                     v: "43",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河南三区",
                     v: "57",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河南四区",
                     v: "69",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河南五区",
                     v: "77",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河南六区",
                     v: "103",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河南七区",
                     v: "135",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "广西",
@@ -605,25 +611,25 @@
                     v: "28",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广西2/4区",
                     v: "64",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广西三区",
                     v: "88",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "广西五区",
                     v: "133",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "江西",
@@ -633,19 +639,19 @@
                     v: "29",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "江西二区",
                     v: "62",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "江西三区",
                     v: "96",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "安徽",
@@ -655,19 +661,19 @@
                     v: "30",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "安徽二区",
                     v: "58",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "安徽三区",
                     v: "104",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "辽宁",
@@ -677,19 +683,19 @@
                     v: "31",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "辽宁二区",
                     v: "47",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "辽宁三区",
                     v: "61",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "山西",
@@ -699,13 +705,13 @@
                     v: "32",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "山西二区",
                     v: "95",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "陕西",
@@ -715,13 +721,13 @@
                     v: "33",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "陕西2/3区",
                     v: "63",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "广州",
@@ -731,7 +737,7 @@
                     v: "34",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "河北",
@@ -741,25 +747,25 @@
                     v: "38",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河北2/3区",
                     v: "67",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河北四区",
                     v: "118",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "河北五区",
                     v: "132",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "重庆",
@@ -769,13 +775,13 @@
                     v: "39",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "重庆二区",
                     v: "73",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "黑龙江",
@@ -785,13 +791,13 @@
                     v: "40",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "黑龙江2/3区",
                     v: "51",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "吉林",
@@ -801,7 +807,7 @@
                     v: "42",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "云贵",
@@ -811,19 +817,19 @@
                     v: "120",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "贵州一区",
                     v: "122",
                     status: "1",
                     display: "1",
-                    
+
                 }, {
                     t: "云贵一区",
                     v: "124",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "天津",
@@ -833,7 +839,7 @@
                     v: "121",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "新疆",
@@ -843,7 +849,7 @@
                     v: "123",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }, {
                 t: "内蒙",
@@ -853,7 +859,7 @@
                     v: "125",
                     status: "1",
                     display: "1",
-                    
+
                 }]
             }],
             dialogTableVisible: false,
@@ -871,18 +877,36 @@
             formLabelWidth: '80px'
         },
         computed: {
-            avatar: function () {
+            avatar: function() {
                 if (this.uin === '') {
                     return this.qrcode
                 } else {
-                    var qq = this.uin.match('[1-9][0-9]{4,}')[0]
-                    return 'https://qlogo4.store.qq.com/qzone/' + qq + '/' + qq + '/100'
+                    return 'https://qlogo4.store.qq.com/qzone/' + this.qq + '/' + this.qq + '/100'
                 }
             }
         },
         methods: {
             handleChange(value) {
                 console.log(value);
+            },
+            sendActivity() {
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('sendActivity')}}",
+                    data: {
+                        uin: this.uin,
+                        skey: this.skey,
+                        p_skey: this.p_skey,
+                        g_tk: this.g_tk
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data)
+                    },
+                    error: function(error) {
+                        console.log('领取失败')
+                    }
+                })
             }
         }
     })
@@ -900,7 +924,7 @@
                 qrisg: '{{$qrisg}}'
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 var status = data.data[0] // 状态
                 var login_data = data.data // 登录数据
                 // console.log(login_data)
@@ -924,28 +948,30 @@
                     }
                 } else if (data.code === 201) {
                     clearInterval(interval_check_login)
-                    app.login_status_msg = '登录成功'
+                    app.qq = login_data.qq
                     app.uin = login_data.uin
                     app.skey = login_data.skey
                     app.p_skey = login_data.p_skey
+                    app.super_key = login_data.superkey
                     app.g_tk = getGTK(app.skey)
+                    app.login_status_msg = '登录成功'
                 } else {
                     clearInterval(interval_check_login)
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 console.log('检查登录状态失败')
                 clearInterval(interval_check_login)
             }
         });
     }
 
-    function getGTK(str) {
+    function getGTK(sAMEStr) {
         hash = 5381;
-        for (var i = 0, len = str.length; i < len; ++i) {
-            hash += (hash << 5) + str.charAt(i).charCodeAt()
+        for (var i = 0, len = sAMEStr.length; i < len; ++i) {
+            hash += (hash << 5) + sAMEStr.charAt(i).charCodeAt();
         }
-        return hash & 2147483647
+        return hash & 0x7fffffff;
     }
 </script>
 @endsection
